@@ -28,3 +28,6 @@ Earthjustice. (2026, October 5). New air monitoring finds elevated levels of Can
 Grist. (2024, May 18). As fossil fuel plants face retirement, a Puerto Rico community pushes for rooftop solar. https://grist.org/energy/as-fossil-fuel-plants-face-retirement-a-puerto-rico-community-pushes-for-rooftop-solar/ 
 
 Sacrifice zones. (n.d.). The Climate Reality Project. https://www.climaterealityproject.org/sacrifice-zones
+
+U.S. Environmental Protection Agency (EPA), 2023. EJScreen Technical Documentation. Accessed: October 8th, 2025.
+**Link:** https://drive.google.com/file/d/1nG6Nj1bXfzQFOVMO8Km3eNy4SWu1YcIQ/view?usp=sharing
