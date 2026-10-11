@@ -23,3 +23,8 @@ The data is sourced from the United States Environmental Protection Agency’s p
 [Rachel Miller](https://github.com/RachelMGitH)
 
 ## References
+Earthjustice. (2026, October 5). New air monitoring finds elevated levels of Cancer-Causing ethylene oxide in Salinas, Puerto Rico - EarthJustice. https://earthjustice.org/press/2026/new-air-monitoring-finds-elevated-levels-of-cancer-causing-ethylene-oxide-in-salinas-puerto-rico 
+
+Grist. (2024, May 18). As fossil fuel plants face retirement, a Puerto Rico community pushes for rooftop solar. https://grist.org/energy/as-fossil-fuel-plants-face-retirement-a-puerto-rico-community-pushes-for-rooftop-solar/ 
+
+Sacrifice zones. (n.d.). The Climate Reality Project. https://www.climaterealityproject.org/sacrifice-zones
