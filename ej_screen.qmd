@@ -14,7 +14,7 @@ The neighboring Salinas and Guayama municipalities in Puerto Rico are widely rec
 
 Puerto Rico shares many characteristics with the surrounding small island developing states in the Caribbean, including high vulnerability to climate change impacts, but as a United States territory isn’t designated as such. This prevents it from benefiting from international frameworks designed to support small island developing states. Concurrently, Puerto Ricans grapple with unequal political representation, leaving them even more vulnerable to environmental challenges like climate change and pollution.
 
-## Set Up
+## Load Packages and Source Functions
 ```{r}
 #| warning: FALSE
 
@@ -25,7 +25,7 @@ library(tmap)
 library(here)
 ```
 
-## Analysis
+## Import Data
 ```{r}
 #| warning = FALSE
 
@@ -47,7 +47,7 @@ salinas_guayama_clean <- salinas_guayama[-c(32,55),]
 pr_municipalities <- aggregate(puerto_rico, by = list(puerto_rico$CNTY_NAME), FUN = mean,na.rm = TRUE)
 ```
 
-## Figures
+## Visualize Data
 ```{r}
 # Create a map of percentage low income in Salinas-Guayama
 tm_shape(salinas_guayama_clean) +
@@ -67,7 +67,7 @@ tm_shape(salinas_guayama_clean) +
 
 ```
 
-## Findings
+## Map Interpretation
 Figure 1 features a representation of the percentage of low income residents throughout the Salinas and Guayama municipalities in Puerto Rico. From this figure, the highest percentage low-income communities, with 80 to 100% low-income residents, are concentrated in the north-western and south-eastern areas. Figure 2, on the other hand, displays the percentile for toxic chemicals released to air relative to the broader United States in the same region. From Figure 2, the areas with a high percentile are similarly concentrated in the western and south-eastern areas. These areas are classified in the 60th-100th percentile, meaning that 40% or less of the U.S has a higher value than these areas. From comparing the two figures, the areas with high levels of toxic chemicals released to air closely coincide with the areas with the most low-income residents. This suggests that the lower income residents are disproportionately exposed to potential health impacts from these pollutants.
 
 ## References
@@ -76,3 +76,6 @@ Earthjustice. (2026, October 5). New air monitoring finds elevated levels of Can
 Grist. (2024, May 18). As fossil fuel plants face retirement, a Puerto Rico community pushes for rooftop solar. https://grist.org/energy/as-fossil-fuel-plants-face-retirement-a-puerto-rico-community-pushes-for-rooftop-solar/ 
 
 Sacrifice zones. (n.d.). The Climate Reality Project. https://www.climaterealityproject.org/sacrifice-zones
+
+## Data Source
+The data is sourced from the United States Environmental Protection Agency’s previous EJScreen: Environmental Justice Screening and Mapping Tool, and can be accessed from the following link: https://drive.google.com/file/d/1nG6Nj1bXfzQFOVMO8Km3eNy4SWu1YcIQ/view
