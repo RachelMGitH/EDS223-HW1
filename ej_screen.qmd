@@ -1,0 +1,75 @@
+---
+title: "EDS 223 Homework 1"
+subtitle: "Map Making Practice"
+author: "Rachel Miller"
+date: 2026-10-10
+---
+
+## Why Salinas and Guayama? 
+
+The neighboring Salinas and Guayama municipalities in Puerto Rico are widely recognized as a “sacrifice zone”, or an area “where residents are subjected to heightened levels of pollution and hazardous materials, despite the adverse impacts on their health” as defined by the Climate Reality Project (Sacrifice Zones, n.d.). The predominantly low-income and Afro-Puerto Rican Residents are subjected to disproportionate exposure to toxic emissions from several major industrial polluters concentrated in the Salinas-Guayama region, including two fossil-fired power plants (Grist, 2024) and a sterilization facility (Earthjustice, 2026).
+
+Puerto Rico shares many characteristics with the surrounding small island developing states in the Caribbean, including high vulnerability to climate change impacts, but as a United States territory isn’t designated as such. This prevents it from benefiting from international frameworks designed to support small island developing states. Concurrently, Puerto Ricans grapple with unequal political representation, leaving them even more vulnerable to environmental challenges like climate change and pollution.
+
+## Set Up
+```{r}
+#| warning: FALSE
+
+library(tidyverse)
+library(sf)
+library(stars)
+library(tmap)
+library(here)
+```
+
+## Analysis
+```{r}
+#| warning = FALSE
+
+# Read in geodatabase of EJScreen data at the Census Block Group level
+ejscreen <- sf::st_read(here::here("data", "ejscreen","EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
+
+# Filter to Puerto Rico
+puerto_rico <- ejscreen %>%
+  dplyr::filter(ST_ABBREV == "PR") 
+
+# Filter to Salinas-Guayama Municipalities
+salinas_guayama <- ejscreen %>%
+  dplyr::filter(CNTY_NAME %in% c("Salinas Municipio", "Guayama Municipio"))
+
+# Keep only rows representing land areas
+salinas_guayama_clean <- salinas_guayama[-c(32,55),]
+
+# Find the average values for all variables within municipalities
+pr_municipalities <- aggregate(puerto_rico, by = list(puerto_rico$CNTY_NAME), FUN = mean,na.rm = TRUE)
+```
+
+## Figures
+```{r}
+# Create a map of percentage low income in Salinas-Guayama
+tm_shape(salinas_guayama_clean) +
+  tm_polygons(fill = "P_LOWINCPCT",
+  fill.legend = tm_legend(title = "Percentage Low Income")) +
+  tm_title("Fig.1 : Percentage Low Income Population in Salinas and Guyama") +
+  tm_scalebar() +
+  tm_compass(position = c("left", "top"))
+
+# Create a map of percentile for toxic releases to air in Salinas-Guayama
+tm_shape(salinas_guayama_clean) +
+  tm_polygons(fill = "P_RSEI_AIR",
+  fill.legend = tm_legend(title = "Percentile for Toxic Releases to Air")) +
+  tm_title("Fig.2 : Percentile for Toxic Releases to Air in Salinas and Guayama") +
+  tm_scalebar() +
+  tm_compass(position = c("left", "top"))
+
+```
+
+## Findings
+Figure 1 features a representation of the percentage of low income residents throughout the Salinas and Guayama municipalities in Puerto Rico. From this figure, the highest percentage low-income communities, with 80 to 100% low-income residents, are concentrated in the north-western and south-eastern areas. Figure 2, on the other hand, displays the percentile for toxic chemicals released to air relative to the broader United States in the same region. From Figure 2, the areas with a high percentile are similarly concentrated in the western and south-eastern areas. These areas are classified in the 60th-100th percentile, meaning that 40% or less of the U.S has a higher value than these areas. From comparing the two figures, the areas with high levels of toxic chemicals released to air closely coincide with the areas with the most low-income residents. This suggests that the lower income residents are disproportionately exposed to potential health impacts from these pollutants.
+
+## References
+Earthjustice. (2026, October 5). New air monitoring finds elevated levels of Cancer-Causing ethylene oxide in Salinas, Puerto Rico - EarthJustice. https://earthjustice.org/press/2026/new-air-monitoring-finds-elevated-levels-of-cancer-causing-ethylene-oxide-in-salinas-puerto-rico 
+
+Grist. (2024, May 18). As fossil fuel plants face retirement, a Puerto Rico community pushes for rooftop solar. https://grist.org/energy/as-fossil-fuel-plants-face-retirement-a-puerto-rico-community-pushes-for-rooftop-solar/ 
+
+Sacrifice zones. (n.d.). The Climate Reality Project. https://www.climaterealityproject.org/sacrifice-zones
