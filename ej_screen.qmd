@@ -7,6 +7,9 @@ format:
   pdf:
     toc: true
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
 
 ## Why Salinas and Guayama? 
 
@@ -16,7 +19,6 @@ Puerto Rico shares many characteristics with the surrounding small island develo
 
 ## Load Packages and Source Functions
 ```{r}
-#| warning: FALSE
 
 library(tidyverse)
 library(sf)
@@ -27,7 +29,6 @@ library(here)
 
 ## Import Data
 ```{r}
-#| warning = FALSE
 
 # Read in geodatabase of EJScreen data at the Census Block Group level
 ejscreen <- sf::st_read(here::here("data", "ejscreen","EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
