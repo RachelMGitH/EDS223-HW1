@@ -3,6 +3,9 @@ title: "EDS 223 Homework 1"
 subtitle: "Map Making Practice"
 author: "Rachel Miller"
 date: 2026-10-10
+format:
+  pdf:
+    toc: true
 ---
 
 ## Why Salinas and Guayama? 
