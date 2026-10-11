@@ -31,8 +31,12 @@ library(here)
 ```{r}
 
 # Read in geodatabase of EJScreen data at the Census Block Group level
-ejscreen <- sf::st_read(here::here("data", "ejscreen","EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
+ejscreen <- sf::st_read(here::here(
+  "data", "ejscreen","EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
+```
 
+## Data Wrangling
+```{r}
 # Filter to Puerto Rico
 puerto_rico <- ejscreen %>%
   dplyr::filter(ST_ABBREV == "PR") 
@@ -45,7 +49,10 @@ salinas_guayama <- ejscreen %>%
 salinas_guayama_clean <- salinas_guayama[-c(32,55),]
 
 # Find the average values for all variables within municipalities
-pr_municipalities <- aggregate(puerto_rico, by = list(puerto_rico$CNTY_NAME), FUN = mean,na.rm = TRUE)
+pr_municipalities <- aggregate(
+  puerto_rico, 
+  by = list(puerto_rico$CNTY_NAME), 
+  FUN = mean,na.rm = TRUE)
 ```
 
 ## Visualize Data
